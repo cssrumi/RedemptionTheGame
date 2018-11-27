@@ -1,4 +1,4 @@
-package com.rtg;
+package com.rtg.main;
 
 import javax.swing.*;
 

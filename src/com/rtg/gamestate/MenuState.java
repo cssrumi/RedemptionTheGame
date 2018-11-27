@@ -48,7 +48,7 @@ public class MenuState extends GameState {
 
     @Override
     public void update() {
-
+        bg.update();
     }
 
     @Override
@@ -57,7 +57,7 @@ public class MenuState extends GameState {
 
         g.setColor(titleColor);
         g.setFont(titleFont);
-        g.drawString("Dragon Tale", 80, 70);
+        g.drawString("Redemption", 80, 70);
 
         g.setFont(font);
         for (int i = 0; i < options.length; i++) {
@@ -94,7 +94,7 @@ public class MenuState extends GameState {
             }
         }
         if(k == KeyEvent.VK_DOWN) {
-            currentChoice--;
+            currentChoice++;
             if(currentChoice == options.length) {
                 currentChoice = 0;
             }

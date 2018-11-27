@@ -10,8 +10,8 @@ import java.awt.image.BufferedImage;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener {
 
-    public static final int WIDTH = 640;
-    public static final int HEIGHT = 320;
+    public static final int WIDTH = 320;
+    public static final int HEIGHT = 240;
     public static final int SCALE = 2;
 
     private Thread thread;
@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     public GamePanel() {
         super();
-        setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+        setSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         setFocusable(true);
         requestFocus();
     }

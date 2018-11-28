@@ -1,0 +1,2 @@
+# BUILD:
+    compile assembly:single

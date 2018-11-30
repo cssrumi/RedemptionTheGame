@@ -1,6 +1,7 @@
 package com.rtg.gamestate;
 
 import com.rtg.main.GamePanel;
+import com.rtg.tilemap.Background;
 import com.rtg.tilemap.TileMap;
 
 import java.awt.*;
@@ -8,6 +9,7 @@ import java.awt.*;
 public class Level1State extends GameState {
 
     private TileMap tileMap;
+    private Background bg;
 
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
@@ -20,6 +22,8 @@ public class Level1State extends GameState {
         tileMap.loadTiles("/tilesets/grasstileset.gif");
         tileMap.loadMap("/maps/level1-1.map");
         tileMap.setPosition(0,0);
+
+        bg = new Background("/background/grassbg1.gif", 0.1);
     }
 
     @Override
@@ -29,11 +33,9 @@ public class Level1State extends GameState {
 
     @Override
     public void draw(Graphics2D g) {
-        // clear
-        g.setColor(Color.WHITE);
-        g.fillRect(0,0, GamePanel.WIDTH, GamePanel.HEIGHT);
 
-        // draw map
+        bg.draw(g);
+
         tileMap.draw(g);
     }
 

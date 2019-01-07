@@ -39,7 +39,7 @@ public class Player extends MapObject {
     }
 
     private void setSpeed() {
-        setSpeed(0.5);
+        setSpeed(1.0);
     }
 
     private void setSpeed(double times) {
@@ -57,6 +57,7 @@ public class Player extends MapObject {
         getNextPosition();
         checkTileMapCollision();
         setPosition(xtemp, ytemp);
+        System.out.println(dx);
 
         if (dy > 0) {
             psm.setState(PlayerStateEnum.FALLING);
@@ -68,8 +69,7 @@ public class Player extends MapObject {
     }
 
     public void draw(Graphics2D g) {
-        //26.12
-        //34.35
+
         setMapPosition();
         g.drawImage(
                 psm.getImage(),
@@ -83,14 +83,10 @@ public class Player extends MapObject {
     private void getNextPosition() {
         if (left) {
             dx -= moveSpeed;
-            if (dx < -maxSpeed) {
-                dx = -maxSpeed;
-            }
+            if (dx < -maxSpeed) dx = -maxSpeed;
         } else if (right) {
             dx += moveSpeed;
-            if (dx > maxSpeed) {
-                dx = moveSpeed;
-            }
+            if (dx > maxSpeed) dx = maxSpeed;
         } else {
             if (dx > 0) {
                 dx -= stopSpeed;
@@ -112,8 +108,8 @@ public class Player extends MapObject {
         }
     }
 
-    private void getCollision() {
-
-    }
+//    private void getCollision() {
+//
+//    }
 
 }

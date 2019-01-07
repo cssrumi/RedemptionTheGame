@@ -25,7 +25,7 @@ public class TileMap2 {
 
 
     private int[][] map;
-    private static int tileSize;
+    private int tileSize;
     private int numRows;
     private int numCols;
     private int width;
@@ -88,12 +88,16 @@ public class TileMap2 {
             BufferedReader br = new BufferedReader(
                     new InputStreamReader(in)
             );
-
             numCols = Integer.parseInt(br.readLine());
             numRows = Integer.parseInt(br.readLine());
             map = new int[numRows][numCols];
             width = numCols * tileSize;
             height = numRows * tileSize;
+
+            xmin = GamePanel.WIDTH - width;
+            xmax = 0;
+            ymin = GamePanel.HEIGHT - height;
+            ymax = 0;
 
             for (int row = 0; row < numRows; row++) {
                 String line = br.readLine();

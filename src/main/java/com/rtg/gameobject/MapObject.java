@@ -31,8 +31,6 @@ public abstract class MapObject {
     protected boolean topRight;
     protected boolean bottomLeft;
     protected boolean bottomRight;
-    protected int currentAction;
-    protected int previousAction;
     protected boolean facingRight;
     protected boolean left;
     protected boolean right;
@@ -145,11 +143,11 @@ public abstract class MapObject {
 
     }
 
-    public int getx() {
+    public int getX() {
         return (int) x;
     }
 
-    public int gety() {
+    public int getY() {
         return (int) y;
     }
 

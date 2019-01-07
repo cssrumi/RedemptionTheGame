@@ -1,6 +1,7 @@
 package com.rtg.gamestate;
 
 import com.rtg.gameobject.Player;
+import com.rtg.main.GamePanel;
 import com.rtg.tilemap.Background;
 import com.rtg.tilemap.TileMap2;
 
@@ -34,6 +35,10 @@ public class Level1State extends GameState {
     @Override
     public void update() {
         player.update();
+        tileMap.setPosition(
+                GamePanel.WIDTH / 2 - player.getX(),
+                GamePanel.HEIGHT /2 - player.getY()
+        );
     }
 
     @Override
@@ -63,6 +68,8 @@ public class Level1State extends GameState {
             case KeyEvent.VK_SPACE:
                 player.setJumping(true);
                 break;
+            case KeyEvent.VK_ESCAPE:
+                gsm.setState(GameStateManager.MENUSTATE);
         }
 
     }

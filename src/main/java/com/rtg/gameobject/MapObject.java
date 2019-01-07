@@ -17,13 +17,10 @@ public abstract class MapObject {
     protected double y;
     protected double dx;
     protected double dy;
-
     protected int width;
     protected int height;
-
     protected int cwidth;
     protected int cheight;
-
     protected int currRow;
     protected int currCol;
     protected double xdest;
@@ -34,22 +31,15 @@ public abstract class MapObject {
     protected boolean topRight;
     protected boolean bottomLeft;
     protected boolean bottomRight;
-
-//    protected Animation animation;
     protected int currentAction;
     protected int previousAction;
     protected boolean facingRight;
-
-
-
     protected boolean left;
     protected boolean right;
     protected boolean up;
     protected boolean down;
     protected boolean jumping;
     protected boolean falling;
-
-
     protected double moveSpeed;
     protected double maxSpeed;
     protected double stopSpeed;
@@ -58,7 +48,8 @@ public abstract class MapObject {
     protected double jumpStart;
     protected double stopJumpSpeed;
 
-    public MapObject(TileMap2 tileMap){
+    // constructor
+    public MapObject(TileMap2 tileMap) {
         this.tileMap = tileMap;
         tileSize = tileMap.getTileSize();
     }
@@ -71,18 +62,19 @@ public abstract class MapObject {
 
     public Rectangle getRectangle() {
         return new Rectangle(
-                (int)x - cwidth,
-                (int)y - cheight,
+                (int) x - cwidth,
+                (int) y - cheight,
                 cwidth,
                 cheight
         );
     }
 
-    public void calculateCorners(double x , double y) {
-        int leftTile = (int)(x - cwidth / 2) / tileSize;
-        int rightTile = (int)(x - cwidth / 2 - 1) / tileSize;
-        int topTile = (int)(y - cheight / 2) / tileSize;
-        int bottomTile = (int)(y - cheight / 2 - 1) / tileSize;
+    public void calculateCorners(double x, double y) {
+
+        int leftTile = (int) (x - cwidth / 2) / tileSize;
+        int rightTile = (int) (x + cwidth / 2 - 1) / tileSize;
+        int topTile = (int) (y - cheight / 2) / tileSize;
+        int bottomTile = (int) (y + cheight / 2 - 1) / tileSize;
 
         int tl = tileMap.getType(topTile, leftTile);
         int tr = tileMap.getType(topTile, rightTile);
@@ -98,8 +90,8 @@ public abstract class MapObject {
 
     public void checkTileMapCollision() {
 
-        currCol = (int)x / tileSize;
-        currRow = (int)y / tileSize;
+        currCol = (int) x / tileSize;
+        currRow = (int) y / tileSize;
 
         xdest = x + dx;
         ydest = y + dy;
@@ -108,61 +100,57 @@ public abstract class MapObject {
         ytemp = y;
 
         calculateCorners(x, ydest);
-        if(dy < 0) {
-            if(topRight || topLeft) {
+        if (dy < 0) {
+            if (topLeft || topRight) {
                 dy = 0;
                 ytemp = currRow * tileSize + cheight / 2;
-            }
-            else {
+            } else {
                 ytemp += dy;
             }
         }
-        if(dy > 0) {
-            if(bottomLeft || bottomRight) {
+        if (dy > 0) {
+            if (bottomLeft || bottomRight) {
                 dy = 0;
                 falling = false;
-                ytemp = (currRow + 1) * tileSize - cheight /2;
-            }
-            else {
+                ytemp = (currRow + 1) * tileSize - cheight / 2;
+            } else {
                 ytemp += dy;
             }
         }
 
-
         calculateCorners(xdest, y);
-        if(dx < 0) {
-            if(topLeft || bottomLeft) {
+        if (dx < 0) {
+            if (topLeft || bottomLeft) {
                 dx = 0;
-                xtemp = currCol * tileSize + cwidth /2;
-            }
-            else {
+                xtemp = currCol * tileSize + cwidth / 2;
+            } else {
                 xtemp += dx;
             }
         }
-        if(dx > 0) {
-            if(topRight || bottomRight) {
+        if (dx > 0) {
+            if (topRight || bottomRight) {
                 dx = 0;
-                xtemp = (currCol + 1) * tileSize + cwidth /2;
-            }
-            else {
+                xtemp = (currCol + 1) * tileSize - cwidth / 2;
+            } else {
                 xtemp += dx;
             }
         }
-        if(!falling) {
+
+        if (!falling) {
             calculateCorners(x, ydest + 1);
-            if(!bottomRight && !bottomLeft) {
+            if (!bottomLeft && !bottomRight) {
                 falling = true;
             }
-
         }
+
     }
 
-    public int getX() {
-        return (int)x;
+    public int getx() {
+        return (int) x;
     }
 
-    public int getY() {
-        return (int)y;
+    public int gety() {
+        return (int) y;
     }
 
     public int getWidth() {
@@ -173,11 +161,11 @@ public abstract class MapObject {
         return height;
     }
 
-    public int getCwidth() {
+    public int getCWidth() {
         return cwidth;
     }
 
-    public int getCheight() {
+    public int getCHeight() {
         return cheight;
     }
 
@@ -218,11 +206,8 @@ public abstract class MapObject {
 
     public boolean notOnScreen() {
         return x + xmap + width < 0 ||
-                x + xmap > GamePanel.WIDTH ||
+                x + xmap - width > GamePanel.WIDTH ||
                 y + ymap + height < 0 ||
                 y + ymap - height > GamePanel.HEIGHT;
     }
-
-
-
 }

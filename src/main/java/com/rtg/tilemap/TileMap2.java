@@ -25,7 +25,7 @@ public class TileMap2 {
 
 
     private int[][] map;
-    private int tileSize;
+    private static int tileSize;
     private int numRows;
     private int numCols;
     private int width;

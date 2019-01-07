@@ -3,14 +3,14 @@ package com.rtg.gamestate;
 import com.rtg.gameobject.Player;
 import com.rtg.main.GamePanel;
 import com.rtg.tilemap.Background;
-import com.rtg.tilemap.TileMap2;
+import com.rtg.tilemap.TileMap;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Level1State extends GameState {
 
-    private TileMap2 tileMap;
+    private TileMap tileMap;
     private Background bg;
     private Player player;
 
@@ -21,8 +21,8 @@ public class Level1State extends GameState {
 
     @Override
     public void init() {
-        tileMap = new TileMap2(30);
-        tileMap.loadTiles("/tilesets/tiles.gif");
+        tileMap = new TileMap(30);
+        tileMap.loadTiles("/tilesets/tilemap.gif");
         tileMap.loadMap("/maps/lvl1.map");
         tileMap.setPosition(0, 0);
 

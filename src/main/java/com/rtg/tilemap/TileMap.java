@@ -9,7 +9,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class TileMap2 {
+public class TileMap {
 
     // position
     private double x;
@@ -42,7 +42,7 @@ public class TileMap2 {
     private int numRowsToDraw;
     private int numColsToDraw;
 
-    public TileMap2(int tileSize) {
+    public TileMap(int tileSize) {
         this.tileSize = tileSize;
         numRowsToDraw = GamePanel.HEIGHT / tileSize + 2;
         numColsToDraw = GamePanel.WIDTH / tileSize + 2;
@@ -106,11 +106,14 @@ public class TileMap2 {
                 for ( int col = 0; col < numCols; col++) {
                     test = line.charAt(col);
                     switch (test){
+                        case '.':
+                            type = 0;
+                            break;
                         case '#':
                             type = 1;
                             break;
-                        case '.':
-                            type = 0;
+                        case '|':
+                            type = 2;
                             break;
                         default:
                             type = 0;
@@ -172,6 +175,7 @@ public class TileMap2 {
     }
 
     public void draw(Graphics2D g) {
+        int r, c;
 
         for(int row = rowOffset; row < rowOffset + numRowsToDraw; row++) {
             if(row >= numRows) break;
@@ -179,14 +183,30 @@ public class TileMap2 {
                 if(col >= numCols) break;
                 if(map[row][col] == 0) continue;
 
-                int rc = map[row][col];
-                int r = rc / numTilesAcross;
-                int c = rc % numTilesAcross;
+                int type = map[row][col];
+                switch (type) {
+                    case 0:
+                        r = 0;
+                        c = 0;
+                        break;
+                    case 1:
+                        r = 1;
+                        c = 0;
+                        break;
+                    case 2:
+                        r = 0;
+                        c = 1;
+                        break;
+                    default:
+                        r = 0;
+                        c = 0;
+                        break;
+                }
 
                 g.drawImage(
                         tiles[r][c].getImage(),
                         (int)x + col * tileSize,
-                        (int)y + row *tileSize,
+                        (int)y + row *  tileSize,
                         null);
             }
         }

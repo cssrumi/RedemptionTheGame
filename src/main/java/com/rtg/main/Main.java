@@ -8,7 +8,7 @@ public class Main {
         gameInit();
     }
 
-    public static void gameInit(){
+    public static void gameInit() {
         JFrame window = new JFrame("Redemption The Game");
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);

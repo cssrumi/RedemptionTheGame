@@ -37,7 +37,7 @@ public class Level1State extends GameState {
         player.update();
         tileMap.setPosition(
                 GamePanel.WIDTH / 2 - player.getX(),
-                GamePanel.HEIGHT /2 - player.getY()
+                GamePanel.HEIGHT / 2 - player.getY()
         );
     }
 

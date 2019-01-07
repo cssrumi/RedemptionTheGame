@@ -56,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         long wait;
 
         //gameloop
-        while(running){
+        while (running) {
 
             start = System.nanoTime();
 
@@ -67,7 +67,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             elapsed = System.nanoTime() - start;
 
             wait = targetTime - elapsed / 1000000;
-            if(wait < 0)
+            if (wait < 0)
                 wait = 5;
 
             try {

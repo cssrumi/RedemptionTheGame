@@ -9,12 +9,12 @@ public enum PlayerStateEnum {
 
     private int id;
 
-    PlayerStateEnum(int id){
+    PlayerStateEnum(int id) {
         this.id = id;
     }
 
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 

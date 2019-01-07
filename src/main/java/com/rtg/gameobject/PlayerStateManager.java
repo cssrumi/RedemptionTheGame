@@ -15,12 +15,12 @@ public class PlayerStateManager {
     private PlayerStateEnum currentState;
 
 
-    public PlayerStateManager(int tileSize){
+    public PlayerStateManager(int tileSize) {
         this.tileSize = tileSize;
         init();
     }
 
-    public void init(){
+    public void init() {
         try {
             loadSprites("/player/player.gif");
         } catch (Exception e) {
@@ -28,7 +28,7 @@ public class PlayerStateManager {
         }
     }
 
-    public void setState(PlayerStateEnum state){
+    public void setState(PlayerStateEnum state) {
         currentState = state;
 
     }
@@ -37,18 +37,18 @@ public class PlayerStateManager {
         return currentState;
     }
 
-    public int getStateId(){
+    public int getStateId() {
         return currentState.getId();
     }
 
-    public void loadSprites(String s){
-        try{
+    public void loadSprites(String s) {
+        try {
             BufferedImage rawSprites = ImageIO.read(
                     getClass().getResourceAsStream(s)
             );
             playerTiles = new BufferedImage[playerStates.length];
             BufferedImage subimage;
-            for (int i=0; i < playerStates.length; i++) {
+            for (int i = 0; i < playerStates.length; i++) {
                 subimage = rawSprites.getSubimage(0 * tileSize, i * tileSize, tileSize, tileSize);
                 playerTiles[i] = subimage;
             }

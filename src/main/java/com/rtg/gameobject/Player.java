@@ -17,7 +17,7 @@ public class Player extends MapObject {
         init();
     }
 
-    public void setCenter(){
+    public void setCenter() {
         Dimension dim = GamePanel.getCenter();
         setPosition(dim.width, dim.height);
     }

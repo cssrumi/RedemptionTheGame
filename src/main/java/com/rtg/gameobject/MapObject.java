@@ -2,13 +2,13 @@ package com.rtg.gameobject;
 
 import com.rtg.main.GamePanel;
 import com.rtg.tilemap.Tile;
-import com.rtg.tilemap.TileMap;
+import com.rtg.tilemap.TileMap2;
 
 import java.awt.*;
 
 public abstract class MapObject {
 
-    protected TileMap tileMap;
+    protected TileMap2 tileMap;
     protected int tileSize;
     protected double xmap;
     protected double ymap;
@@ -58,7 +58,7 @@ public abstract class MapObject {
     protected double jumpStart;
     protected double stopJumpSpeed;
 
-    public MapObject(TileMap tileMap){
+    public MapObject(TileMap2 tileMap){
         this.tileMap = tileMap;
         tileSize = tileMap.getTileSize();
     }

@@ -1,8 +1,6 @@
 package com.rtg.gamestate;
 
-import com.rtg.main.GamePanel;
 import com.rtg.tilemap.Background;
-import com.rtg.tilemap.TileMap;
 import com.rtg.tilemap.TileMap2;
 
 import java.awt.*;

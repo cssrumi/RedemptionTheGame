@@ -9,10 +9,9 @@ public class MenuState extends GameState {
 
     private Background bg;
 
-    private int currentChoice = 0;
+    private int selectNumber = 0;
     private String[] options = {
             "Start",
-            "Help",
             "Quit"
     };
 
@@ -32,7 +31,7 @@ public class MenuState extends GameState {
 
             titleColor = new Color(128, 0, 0);
             titleFont = new Font("Century Gothic", Font.PLAIN, 28);
-            font = new Font("Arial", Font.PLAIN, 12);
+            font = new Font("Arial", Font.PLAIN, 16);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,7 +60,7 @@ public class MenuState extends GameState {
 
         g.setFont(font);
         for (int i = 0; i < options.length; i++) {
-            if(i == currentChoice)
+            if(i == selectNumber)
                 g.setColor(Color.BLACK);
             else
                 g.setColor(Color.RED);
@@ -71,33 +70,28 @@ public class MenuState extends GameState {
     }
 
     private void select() {
-        if(currentChoice == 0) {
-            gsm.setState(GameStateManager.LEVEL1STATE);
-        }
-        if(currentChoice == 1) {
-
-        }
-        if(currentChoice == 2) {
-            System.exit(0);
+        switch (selectNumber){
+            case 0:
+                gsm.setState(GameStateManager.LEVEL1STATE);
+                break;
+            case 1:
+                System.exit(0);
+                break;
         }
     }
 
     @Override
     public void keyPressed(int k) {
-        if(k == KeyEvent.VK_ENTER) {
-            select();
-        }
-        if(k == KeyEvent.VK_UP) {
-            currentChoice--;
-            if(currentChoice == -1) {
-                currentChoice = options.length - 1;
-            }
-        }
-        if(k == KeyEvent.VK_DOWN) {
-            currentChoice++;
-            if(currentChoice == options.length) {
-                currentChoice = 0;
-            }
+        switch (k){
+            case KeyEvent.VK_ENTER:
+                select();
+                break;
+            case KeyEvent.VK_UP:
+                if (selectNumber > 0) selectNumber--;
+                break;
+            case KeyEvent.VK_DOWN:
+                if (selectNumber < options.length - 1) selectNumber++;
+                break;
         }
     }
 

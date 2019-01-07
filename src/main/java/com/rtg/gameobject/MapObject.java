@@ -35,7 +35,7 @@ public abstract class MapObject {
     protected boolean bottomLeft;
     protected boolean bottomRight;
 
-    protected Animation animation;
+//    protected Animation animation;
     protected int currentAction;
     protected int previousAction;
     protected boolean facingRight;

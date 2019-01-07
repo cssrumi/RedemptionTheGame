@@ -5,6 +5,10 @@ import javax.swing.*;
 public class Main {
 
     public static void main(String[] args) {
+        gameInit();
+    }
+
+    public static void gameInit(){
         JFrame window = new JFrame("Redemption The Game");
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);

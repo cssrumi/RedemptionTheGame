@@ -9,7 +9,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class TileMap {
+public class TileMap2 {
 
     // position
     private double x;
@@ -42,7 +42,7 @@ public class TileMap {
     private int numRowsToDraw;
     private int numColsToDraw;
 
-    public TileMap(int tileSize) {
+    public TileMap2(int tileSize) {
         this.tileSize = tileSize;
         numRowsToDraw = GamePanel.HEIGHT / tileSize + 2;
         numColsToDraw = GamePanel.WIDTH / tileSize + 2;
@@ -95,12 +95,24 @@ public class TileMap {
             width = numCols * tileSize;
             height = numRows * tileSize;
 
-            String delim = "\\s+";
             for (int row = 0; row < numRows; row++) {
                 String line = br.readLine();
-                String[] tokens = line.split(delim);
+                int type = 0;
+                char test;
                 for ( int col = 0; col < numCols; col++) {
-                    map[row][col] = Integer.parseInt(tokens[col]);
+                    test = line.charAt(col);
+                    switch (test){
+                        case '#':
+                            type = 1;
+                            break;
+                        case '.':
+                            type = 0;
+                            break;
+                        default:
+                            type = 0;
+                            break;
+                    }
+                    map[row][col] = type;
                 }
             }
 

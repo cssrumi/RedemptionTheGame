@@ -149,9 +149,27 @@ public class TileMap {
     }
 
     public int getType(int row, int col) {
-        int rc = map[row][col];
-        int r = rc / numTilesAcross;
-        int c = rc % numTilesAcross;
+        int r, c;
+        int type = map[row][col];
+        switch (type) {
+            case 0:
+                r = 0;
+                c = 0;
+                break;
+            case 1:
+                r = 1;
+                c = 0;
+                break;
+            case 2:
+                r = 0;
+                c = 1;
+                break;
+            default:
+                r = 0;
+                c = 0;
+                break;
+        }
+
         return tiles[r][c].getType();
     }
 

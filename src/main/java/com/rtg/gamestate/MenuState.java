@@ -60,7 +60,7 @@ public class MenuState extends GameStateAbstract {
 
         g.setFont(font);
         for (int i = 0; i < options.length; i++) {
-            if(i == selectNumber)
+            if (i == selectNumber)
                 g.setColor(Color.BLACK);
             else
                 g.setColor(Color.RED);
@@ -70,7 +70,7 @@ public class MenuState extends GameStateAbstract {
     }
 
     private void select() {
-        switch (selectNumber){
+        switch (selectNumber) {
             case 0:
                 gsm.setState(GameStateManager.LEVEL1STATE);
                 break;
@@ -82,7 +82,7 @@ public class MenuState extends GameStateAbstract {
 
     @Override
     public void keyPressed(int k) {
-        switch (k){
+        switch (k) {
             case KeyEvent.VK_ENTER:
                 select();
                 break;

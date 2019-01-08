@@ -3,6 +3,9 @@ package com.rtg.gameobject;
 import com.rtg.tilemap.Tile;
 import com.rtg.tilemap.Map;
 
+/**
+ *
+ */
 public abstract class GameObject {
 
     protected Map map;
@@ -24,6 +27,9 @@ public abstract class GameObject {
     protected double jumpStart;
 
 
+    /**
+     * @param map
+     */
     public GameObject(Map map) {
         this.map = map;
         tileSize = map.getTileSize();

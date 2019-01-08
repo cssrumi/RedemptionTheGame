@@ -7,4 +7,5 @@ public interface Level {
     public void startTimer();
     public long getDeltaTime();
     public void checkIfFallen();
+    public void checkPills();
 }

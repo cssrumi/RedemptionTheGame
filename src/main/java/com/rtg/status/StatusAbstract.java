@@ -6,11 +6,11 @@ import java.awt.*;
 
 public abstract class StatusAbstract {
 
-    private String message;
-    private int x, y;
+    protected String message;
+    protected int x, y;
     protected Color color;
-    private Font font;
-    private int fontSize;
+    protected Font font;
+    protected int fontSize;
 
     public StatusAbstract() {
         init();
@@ -56,7 +56,18 @@ public abstract class StatusAbstract {
     public void draw(Graphics2D g) {
         g.setColor(color);
         g.setFont(font);
-        g.drawString(message, x, y);
+        g.drawString(message, getX(), getY());
     }
 
+    public void setFontSize(int fontSize) {
+        font = new Font("Century Gothic", Font.PLAIN, fontSize);
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }

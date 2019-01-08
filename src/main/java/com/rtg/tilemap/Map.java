@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class Map {
 
@@ -27,6 +28,7 @@ public class Map {
     private int numTilesAcross;
     private Tile[][] tiles;
     private int finishTileNumber;
+    private ArrayList<Dim> pills;
 
     private int rowOffset, colOffset;
     private int numRowsToDraw, numColsToDraw;
@@ -39,14 +41,14 @@ public class Map {
     }
 
     public int getFinishX() {
-        int x = finishTileNumber * tileSize - (int) (tileSize / 15);
+        int x = finishTileNumber * tileSize - (tileSize / 15);
         return x;
     }
 
 
     public void loadTiles(String s) {
         try {
-
+            pills = new ArrayList<>();
             tileset = ImageIO.read(
                     getClass().getResourceAsStream(s)
             );
@@ -111,6 +113,10 @@ public class Map {
                             type = 2;
                             finishTileNumber = col;
                             break;
+                        case '%':
+                            type = 3;
+                            pills.add(new Dim(col,row,tileSize));
+                            break;
                         default:
                             type = 0;
                             break;
@@ -159,6 +165,10 @@ public class Map {
             case 2:
                 r = 0;
                 c = 1;
+                break;
+            case 3:
+                r = 0;
+                c = 2;
                 break;
             default:
                 r = 0;
@@ -211,6 +221,10 @@ public class Map {
                         r = 0;
                         c = 1;
                         break;
+                    case 3:
+                        r = 0;
+                        c = 2;
+                        break;
                     default:
                         r = 0;
                         c = 0;
@@ -224,7 +238,9 @@ public class Map {
                         null);
             }
         }
-
     }
 
+    public ArrayList<Dim> getPills() {
+        return pills;
+    }
 }

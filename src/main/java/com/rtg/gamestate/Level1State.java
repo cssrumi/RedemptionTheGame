@@ -187,6 +187,7 @@ public class Level1State extends GameStateAbstract implements Level {
                     (pill.getY() > py - tileSize / 2) &&
                     (pill.getY() < py + tileSize / 2)
             ) {
+                bg.setImage("/background/pillbg.gif");
                 player.died();
             }
         }

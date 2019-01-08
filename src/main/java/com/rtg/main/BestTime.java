@@ -19,7 +19,7 @@ public class BestTime {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             bestTime = Long.parseLong(br.readLine());
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             bestTime = 60_000;
         }
         createBestTimeMessage();

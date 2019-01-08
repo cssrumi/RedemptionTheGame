@@ -9,7 +9,7 @@ public class Main {
     }
 
     public static void gameInit() {
-        JFrame window = new JFrame("Redemption The Game");
+        JFrame window = new JFrame("Drug Effect - The Game");
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
         window.setSize(gamePanel.getSize());

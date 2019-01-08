@@ -16,6 +16,10 @@ public class Background {
     private double dy;
 
     public Background(String s) {
+        setImage(s);
+    }
+
+    public void setImage(String s){
         try {
             image = ImageIO.read(
                     getClass().getResourceAsStream(s)

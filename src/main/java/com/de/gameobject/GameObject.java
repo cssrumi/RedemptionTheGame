@@ -1,11 +1,10 @@
-package com.rtg.gameobject;
+package com.de.gameobject;
 
-import com.rtg.tilemap.Tile;
-import com.rtg.tilemap.Map;
+import com.de.tilemap.Tile;
+import com.de.tilemap.Map;
 
 /**
  * GameObject class uses for storing game objects information.
- *
  */
 public abstract class GameObject {
 
@@ -30,6 +29,7 @@ public abstract class GameObject {
 
     /**
      * This is a constructor to initialize Game Object
+     *
      * @param map reference to Map Object
      */
     public GameObject(Map map) {
@@ -40,6 +40,7 @@ public abstract class GameObject {
 
     /**
      * To calculate corners of map object
+     *
      * @param x x coordinate
      * @param y y coordinate
      */
@@ -122,14 +123,18 @@ public abstract class GameObject {
 
     }
 
-    /** To get x coordinate
+    /**
+     * To get x coordinate
+     *
      * @return x coordinate
      */
     public int getX() {
         return (int) x;
     }
 
-    /** To get y coordinate
+    /**
+     * To get y coordinate
+     *
      * @return y coordinate
      */
     public int getY() {
@@ -138,6 +143,7 @@ public abstract class GameObject {
 
     /**
      * To set x and y coordinates
+     *
      * @param x new x
      * @param y new y
      */
@@ -163,7 +169,7 @@ public abstract class GameObject {
     }
 
     /**
-     * To set direction to left
+     * To set direction to right
      * @param b new value
      */
     public void setRight(boolean b) {
@@ -171,7 +177,7 @@ public abstract class GameObject {
     }
 
     /**
-     * To set direction to left
+     * To set jumping value
      * @param b new value
      */
     public void setJumping(boolean b) {

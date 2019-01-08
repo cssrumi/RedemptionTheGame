@@ -1,6 +1,6 @@
-package com.rtg.main;
+package com.de.main;
 
-import com.rtg.gamestate.GameStateManager;
+import com.de.gamestate.GameStateManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +8,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
+/**
+ * Class uses to store window information
+ */
 public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     public static final int WIDTH = 320;
@@ -24,6 +27,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private GameStateManager gsm;
 
+    /**
+     * Constructor of the class
+     */
     public GamePanel() {
         super();
         setSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
@@ -31,6 +37,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         requestFocus();
     }
 
+    /**
+     * Function that create and start main thread if empty
+     */
     public void addNotify() {
         super.addNotify();
         if (thread == null) {
@@ -40,6 +49,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         }
     }
 
+    /**
+     * Function that initialize Game Panel
+     */
     private void init() {
         image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         g = (Graphics2D) image.getGraphics();
@@ -48,6 +60,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         gsm = new GameStateManager();
     }
 
+    /**
+     * Function that run the entire game
+     */
     public void run() {
         init();
 
@@ -79,14 +94,23 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         }
     }
 
+    /**
+     * Function that update current game state
+     */
     private void update() {
         gsm.update();
     }
 
+    /**
+     * Function that draw current game state
+     */
     private void draw() {
         gsm.draw(g);
     }
 
+    /**
+     * Function that draw entire game
+     */
     public void drawToScreen() {
         Graphics g2 = getGraphics();
         g2.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
@@ -96,14 +120,26 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     public void keyTyped(KeyEvent key) {
     }
 
+    /**
+     * Function that perform current state action while key is pressed
+     * @param key key id
+     */
     public void keyPressed(KeyEvent key) {
         gsm.keyPressed(key.getKeyCode());
     }
 
+    /**
+     * Function that perform current state action when key is released
+     * @param key key id
+     */
     public void keyReleased(KeyEvent key) {
         gsm.keyReleased(key.getKeyCode());
     }
 
+    /**
+     * Function that return center dimension of the screen
+     * @return
+     */
     public static Dimension getCenter() {
         Dimension dim = new Dimension(WIDTH / 2, HEIGHT / 2);
         return dim;

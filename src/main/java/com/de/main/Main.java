@@ -1,4 +1,4 @@
-package com.rtg.main;
+package com.de.main;
 
 import javax.swing.*;
 
@@ -8,6 +8,9 @@ public class Main {
         gameInit();
     }
 
+    /**
+     * Function that initialize entire game
+     */
     public static void gameInit() {
         JFrame window = new JFrame("Drug Effect - The Game");
         GamePanel gamePanel = new GamePanel();

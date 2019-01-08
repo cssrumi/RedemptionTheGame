@@ -1,11 +1,11 @@
-package com.rtg.gameobject;
-
-import com.rtg.tilemap.Tile;
+package com.de.gameobject;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
+/**
+ * Class uses to manage player states
+ */
 public class PlayerStateManager {
 
     private int tileSize;
@@ -15,11 +15,18 @@ public class PlayerStateManager {
     private PlayerStateEnum currentState;
 
 
+    /**
+     * Constructor of PlayerStateManager class
+     * @param tileSize size of map tile
+     */
     public PlayerStateManager(int tileSize) {
         this.tileSize = tileSize;
         init();
     }
 
+    /**
+     * Function that initialize class
+     */
     public void init() {
         try {
             loadSprites("/player/player.gif");
@@ -28,19 +35,27 @@ public class PlayerStateManager {
         }
     }
 
+    /**
+     * Function that set new state
+     * @param state new state
+     */
     public void setState(PlayerStateEnum state) {
         currentState = state;
 
     }
 
+    /**
+     * Function that return current player state
+     * @return current player state
+     */
     public PlayerStateEnum getCurrentState() {
         return currentState;
     }
 
-    public int getStateId() {
-        return currentState.getId();
-    }
-
+    /**
+     * Function that load sprites from path
+     * @param s path to resource
+     */
     public void loadSprites(String s) {
         try {
             BufferedImage rawSprites = ImageIO.read(
@@ -57,6 +72,10 @@ public class PlayerStateManager {
         }
     }
 
+    /**
+     * Function that return current player image
+     * @return player image
+     */
     public BufferedImage getImage() {
         return playerTiles[currentState.getId()];
     }

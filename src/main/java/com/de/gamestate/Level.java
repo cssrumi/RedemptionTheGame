@@ -1,7 +1,8 @@
-package com.rtg.gamestate;
+package com.de.gamestate;
 
-import java.util.concurrent.TimeUnit;
-
+/**
+ * Interface of Levels object
+ */
 public interface Level {
     public void checkFinish();
     public void startTimer();

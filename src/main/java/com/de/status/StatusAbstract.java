@@ -1,9 +1,12 @@
-package com.rtg.status;
+package com.de.status;
 
-import com.rtg.main.GamePanel;
+import com.de.main.GamePanel;
 
 import java.awt.*;
 
+/**
+ * Abstract class of status
+ */
 public abstract class StatusAbstract {
 
     protected String message;
@@ -12,10 +15,16 @@ public abstract class StatusAbstract {
     protected Font font;
     protected int fontSize;
 
+    /**
+     * Default constructor of the class
+     */
     public StatusAbstract() {
         init();
     }
 
+    /**
+     * Function that initialize class
+     */
     public void init() {
         calculatePosition();
         color = Color.WHITE;
@@ -23,6 +32,9 @@ public abstract class StatusAbstract {
         font = new Font("Century Gothic", Font.PLAIN, fontSize);
     }
 
+    /**
+     * Function that calculate default position of the status
+     */
     public void calculatePosition() {
         Dimension center = GamePanel.getCenter();
         if (message == null) {
@@ -39,34 +51,55 @@ public abstract class StatusAbstract {
 
     }
 
+    /**
+     * Function that set position of the status
+     * @param x x coordinate
+     * @param y y coordinate
+     */
     public void setPosition(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
+    /**
+     * Function that set message of the status
+     * @param message new message
+     */
     public void setMessage(String message) {
         this.message = message;
         calculatePosition();
     }
 
+    /**
+     * Function that draw status
+     * @param g graphic
+     */
     public void draw(Graphics2D g) {
         g.setColor(color);
         g.setFont(font);
         g.drawString(message, getX(), getY());
     }
 
+    /**
+     * Function that set font size
+     * @param fontSize font size
+     */
     public void setFontSize(int fontSize) {
         font = new Font("Century Gothic", Font.PLAIN, fontSize);
     }
 
+    /**
+     * Function that get x
+     * @return x coordinate
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Function that get y
+     * @return y coordinate
+     */
     public int getY() {
         return y;
     }

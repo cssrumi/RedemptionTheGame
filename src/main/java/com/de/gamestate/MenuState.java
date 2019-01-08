@@ -1,10 +1,13 @@
-package com.rtg.gamestate;
+package com.de.gamestate;
 
-import com.rtg.tilemap.Background;
+import com.de.tilemap.Background;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+/**
+ * Class uses to manage menu state
+ */
 public class MenuState extends GameStateAbstract {
 
     private Background bg;
@@ -20,6 +23,10 @@ public class MenuState extends GameStateAbstract {
 
     private Font font;
 
+    /**
+     * Constructor of the class
+     * @param gsm reference to GameStateManager
+     */
     public MenuState(GameStateManager gsm) {
 
         this.gsm = gsm;
@@ -40,16 +47,26 @@ public class MenuState extends GameStateAbstract {
     }
 
 
+    /**
+     * Function that initialize class
+     */
     @Override
     public void init() {
 
     }
 
+    /**
+     * Function that update menu
+     */
     @Override
     public void update() {
         bg.update();
     }
 
+    /**
+     * Fuction that draw menu
+     * @param g graphic
+     */
     @Override
     public void draw(Graphics2D g) {
         bg.draw(g);
@@ -69,6 +86,9 @@ public class MenuState extends GameStateAbstract {
 
     }
 
+    /**
+     * Function that select new game state
+     */
     private void select() {
         switch (selectNumber) {
             case 0:
@@ -80,6 +100,10 @@ public class MenuState extends GameStateAbstract {
         }
     }
 
+    /**
+     * Function that set state to selected while key is pressed
+     * @param k key id
+     */
     @Override
     public void keyPressed(int k) {
         switch (k) {

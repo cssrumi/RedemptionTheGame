@@ -1,6 +1,6 @@
-package com.rtg.tilemap;
+package com.de.tilemap;
 
-import com.rtg.main.GamePanel;
+import com.de.main.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -10,6 +10,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+/**
+ * Class that store information about Map
+ */
 public class Map {
 
     private double x, y;
@@ -33,6 +36,10 @@ public class Map {
     private int rowOffset, colOffset;
     private int numRowsToDraw, numColsToDraw;
 
+    /**
+     * Constructor of the class that set size of tiles
+     * @param tileSize size of tiles
+     */
     public Map(int tileSize) {
         this.tileSize = tileSize;
         numRowsToDraw = GamePanel.HEIGHT / tileSize + 2;
@@ -40,12 +47,20 @@ public class Map {
         tween = 0.07;
     }
 
+    /**
+     * Function that return x coordinate of the meta tile
+     * @return x coordinate of the meta
+     */
     public int getFinishX() {
         int x = finishTileNumber * tileSize - (tileSize / 15);
         return x;
     }
 
 
+    /**
+     * Function that load tiles from file
+     * @param s path to file
+     */
     public void loadTiles(String s) {
         try {
             pills = new ArrayList<>();
@@ -78,6 +93,10 @@ public class Map {
         }
     }
 
+    /**
+     * Function that load map from file
+     * @param s path to file
+     */
     public void loadMap(String s) {
 
         try {
@@ -130,26 +149,36 @@ public class Map {
         }
     }
 
+    /**
+     * Function that return size of tiles
+     * @return size of tiles
+     */
     public int getTileSize() {
         return tileSize;
     }
 
+    /**
+     * Function that return x coordinate
+     * @return x coordinate
+     */
     public double getX() {
         return (int) x;
     }
 
+    /**
+     * Function that return y coordinate
+     * @return y coordinate
+     */
     public double getY() {
         return (int) y;
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
+    /**
+     * Function that return type of selected tile
+     * @param row row of the map
+     * @param col col of the map
+     * @return type of the tile
+     */
     public int getType(int row, int col) {
         int r, c;
         int type = map[row][col];
@@ -179,6 +208,11 @@ public class Map {
         return tiles[r][c].getType();
     }
 
+    /**
+     * Function that set position of the map
+     * @param x x coordinate
+     * @param y y coordinate
+     */
     public void setPosition(double x, double y) {
 
         this.x += (x - this.x) * tween;
@@ -190,6 +224,9 @@ public class Map {
         rowOffset = (int) -this.y / tileSize;
     }
 
+    /**
+     * Function that fix bounds
+     */
     private void fixBounds() {
         if (x < xmin) x = xmin;
         if (y < ymin) y = ymin;
@@ -198,6 +235,10 @@ public class Map {
 
     }
 
+    /**
+     * Function that draw the map
+     * @param g graphic
+     */
     public void draw(Graphics2D g) {
         int r, c;
 
@@ -240,6 +281,10 @@ public class Map {
         }
     }
 
+    /**
+     * Function that return all pills Array
+     * @return pills Array
+     */
     public ArrayList<Dim> getPills() {
         return pills;
     }

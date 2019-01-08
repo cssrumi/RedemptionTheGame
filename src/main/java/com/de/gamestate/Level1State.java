@@ -244,8 +244,8 @@ public class Level1State extends GameStateAbstract implements Level {
     }
 
     /**
-     * Function that return formated delta time
-     * @return
+     * Function that return formatted delta time
+     * @return formatted delta time
      */
     public String getDeltaTimeString(){
         long dt = getDeltaTime();

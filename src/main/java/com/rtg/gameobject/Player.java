@@ -6,7 +6,7 @@ import com.rtg.tilemap.TileMap;
 
 import java.awt.*;
 
-public class Player extends MapObject {
+public class Player extends GameObject {
 
     private boolean dead;
     private PlayerStateManager psm;
@@ -23,6 +23,7 @@ public class Player extends MapObject {
     }
 
     private void init() {
+        dead = false;
         width = tileSize;
         height = tileSize;
         cwidth = 20;
@@ -106,8 +107,16 @@ public class Player extends MapObject {
         }
     }
 
-//    private void getCollision() {
-//
-//    }
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void setAlive() {
+        dead = false;
+    }
+
+    public void died() {
+        dead = true;
+    }
 
 }

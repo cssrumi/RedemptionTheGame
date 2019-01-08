@@ -6,7 +6,7 @@ import com.rtg.tilemap.TileMap;
 
 import java.awt.*;
 
-public abstract class MapObject {
+public abstract class GameObject {
 
     protected TileMap tileMap;
     protected int tileSize;
@@ -47,12 +47,12 @@ public abstract class MapObject {
     protected double stopJumpSpeed;
 
     // constructor
-    public MapObject(TileMap tileMap) {
+    public GameObject(TileMap tileMap) {
         this.tileMap = tileMap;
         tileSize = tileMap.getTileSize();
     }
 
-    public boolean intersects(MapObject o) {
+    public boolean intersects(GameObject o) {
         Rectangle r1 = getRectangle();
         Rectangle r2 = o.getRectangle();
         return r1.intersects(r2);

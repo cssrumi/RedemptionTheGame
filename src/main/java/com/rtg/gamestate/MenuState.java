@@ -5,7 +5,7 @@ import com.rtg.tilemap.Background;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class MenuState extends GameState {
+public class MenuState extends GameStateAbstract {
 
     private Background bg;
 

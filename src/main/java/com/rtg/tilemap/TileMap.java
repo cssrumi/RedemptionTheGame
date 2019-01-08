@@ -11,18 +11,15 @@ import java.io.InputStreamReader;
 
 public class TileMap {
 
-    // position
     private double x;
     private double y;
 
-    // bounds
     private int xmin;
     private int ymin;
     private int xmax;
     private int ymax;
 
     private double tween;
-
 
     private int[][] map;
     private int tileSize;
@@ -31,12 +28,11 @@ public class TileMap {
     private int width;
     private int height;
 
-    // tileset
     private BufferedImage tileset;
     private int numTilesAcross;
     private Tile[][] tiles;
+    private int finishTileNumber;
 
-    // drawing
     private int rowOffset;
     private int colOffset;
     private int numRowsToDraw;
@@ -48,6 +44,12 @@ public class TileMap {
         numColsToDraw = GamePanel.WIDTH / tileSize + 2;
         tween = 0.07;
     }
+
+    public int getFinishX() {
+        int x = finishTileNumber * tileSize - (int) (tileSize / 15);
+        return x;
+    }
+
 
     public void loadTiles(String s) {
         try {
@@ -114,6 +116,7 @@ public class TileMap {
                             break;
                         case '|':
                             type = 2;
+                            finishTileNumber = col;
                             break;
                         default:
                             type = 0;

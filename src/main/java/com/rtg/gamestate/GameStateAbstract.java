@@ -2,7 +2,7 @@ package com.rtg.gamestate;
 
 import java.awt.*;
 
-public abstract class GameState {
+public abstract class GameStateAbstract {
 
     protected GameStateManager gsm;
 

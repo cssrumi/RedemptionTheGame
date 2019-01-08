@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class GameStateManager {
 
-    private ArrayList<GameState> gameStates;
+    private ArrayList<GameStateAbstract> gameStates;
     private int currentState;
 
     protected static final int MENUSTATE = 0;

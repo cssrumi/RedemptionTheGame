@@ -15,8 +15,8 @@ public class Tile {
 
     /**
      * Constructor of the class that store type and image of the tile
-     * @param image
-     * @param type
+     * @param image tile image
+     * @param type tile type
      */
     public Tile(BufferedImage image, int type) {
         this.image = image;

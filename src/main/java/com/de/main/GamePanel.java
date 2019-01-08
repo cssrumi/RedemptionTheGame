@@ -138,7 +138,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     /**
      * Function that return center dimension of the screen
-     * @return
+     * @return center dimension
      */
     public static Dimension getCenter() {
         Dimension dim = new Dimension(WIDTH / 2, HEIGHT / 2);

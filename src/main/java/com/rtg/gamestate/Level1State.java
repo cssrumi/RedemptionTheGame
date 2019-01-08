@@ -105,12 +105,6 @@ public class Level1State extends GameStateAbstract implements Level {
     @Override
     public void keyPressed(int k) {
         switch (k) {
-            case KeyEvent.VK_DOWN:
-                player.setDown(true);
-                break;
-            case KeyEvent.VK_UP:
-                player.setUp(true);
-                break;
             case KeyEvent.VK_LEFT:
                 player.setLeft(true);
                 break;
@@ -129,12 +123,6 @@ public class Level1State extends GameStateAbstract implements Level {
     @Override
     public void keyReleased(int k) {
         switch (k) {
-            case KeyEvent.VK_DOWN:
-                player.setDown(false);
-                break;
-            case KeyEvent.VK_UP:
-                player.setUp(false);
-                break;
             case KeyEvent.VK_LEFT:
                 player.setLeft(false);
                 break;
@@ -145,7 +133,6 @@ public class Level1State extends GameStateAbstract implements Level {
                 player.setJumping(false);
                 break;
         }
-
     }
 
     @Override

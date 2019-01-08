@@ -4,6 +4,7 @@ import com.rtg.tilemap.Tile;
 import com.rtg.tilemap.Map;
 
 /**
+ * GameObject class uses for storing game objects information.
  *
  */
 public abstract class GameObject {
@@ -22,19 +23,26 @@ public abstract class GameObject {
 
     protected boolean topLeft, topRight, bottomLeft, bottomRight;
     protected boolean facingRight;
-    protected boolean left, right, up, down, jumping, falling;
+    protected boolean left, right, jumping, falling;
     protected double moveSpeed, maxSpeed, stopSpeed, fallSpeed, maxFallSpeed, stopJumpSpeed;
     protected double jumpStart;
 
 
     /**
-     * @param map
+     * This is a constructor to initialize Game Object
+     * @param map reference to Map Object
      */
     public GameObject(Map map) {
         this.map = map;
         tileSize = map.getTileSize();
     }
 
+
+    /**
+     * To calculate corners of map object
+     * @param x x coordinate
+     * @param y y coordinate
+     */
     public void calculateCorners(double x, double y) {
 
         int leftTile = (int) (x - cWidth / 2) / tileSize;
@@ -54,6 +62,9 @@ public abstract class GameObject {
 
     }
 
+    /**
+     * To check if Game Object collide with map Tile Object
+     */
     public void checkTileMapCollision() {
 
         currCol = (int) x / tileSize;
@@ -111,45 +122,58 @@ public abstract class GameObject {
 
     }
 
+    /** To get x coordinate
+     * @return x coordinate
+     */
     public int getX() {
         return (int) x;
     }
 
+    /** To get y coordinate
+     * @return y coordinate
+     */
     public int getY() {
         return (int) y;
     }
 
+    /**
+     * To set x and y coordinates
+     * @param x new x
+     * @param y new y
+     */
     public void setPosition(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public void setVector(double dx, double dy) {
-        this.dx = dx;
-        this.dy = dy;
-    }
-
+    /**
+     * To set new map position
+     */
     public void setMapPosition() {
         xmap = map.getX();
         ymap = map.getY();
     }
 
+    /**
+     * To set direction to left
+     * @param b new value
+     */
     public void setLeft(boolean b) {
         left = b;
     }
 
+    /**
+     * To set direction to left
+     * @param b new value
+     */
     public void setRight(boolean b) {
         right = b;
     }
 
-    public void setUp(boolean b) {
-        up = b;
-    }
-
-    public void setDown(boolean b) {
-        down = b;
-    }
-
+    /**
+     * To set direction to left
+     * @param b new value
+     */
     public void setJumping(boolean b) {
         jumping = b;
     }

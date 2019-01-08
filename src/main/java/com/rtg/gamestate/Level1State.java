@@ -3,10 +3,9 @@ package com.rtg.gamestate;
 import com.rtg.gameobject.Player;
 import com.rtg.main.GamePanel;
 import com.rtg.status.DeadStatus;
-import com.rtg.status.StatusAbstract;
 import com.rtg.status.WinStatus;
 import com.rtg.tilemap.Background;
-import com.rtg.tilemap.TileMap;
+import com.rtg.tilemap.Map;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -14,13 +13,12 @@ import java.util.concurrent.TimeUnit;
 
 public class Level1State extends GameStateAbstract implements Level {
 
-    private TileMap tileMap;
+    private Map map;
     private Background bg;
     private Player player;
     private int finishX;
     private long timer;
     private boolean win;
-    private boolean running;
     private WinStatus winStatus;
     private DeadStatus deadStatus;
 
@@ -31,18 +29,17 @@ public class Level1State extends GameStateAbstract implements Level {
 
     @Override
     public void init() {
-        tileMap = new TileMap(30);
-        tileMap.loadTiles("/tilesets/tilemap.gif");
-        tileMap.loadMap("/maps/lvl1.map");
-        tileMap.setPosition(0, 0);
-        finishX = tileMap.getFinishX();
+        map = new Map(30);
+        map.loadTiles("/tilesets/tilemap.gif");
+        map.loadMap("/maps/lvl1.map");
+        map.setPosition(0, 0);
+        finishX = map.getFinishX();
 
-        bg = new Background("/background/bg1.gif", 0.1);
+        bg = new Background("/background/bg1.gif");
 
         initPlayer();
         startTimer();
         win = false;
-        running = false;
 
         winStatus = new WinStatus();
         deadStatus = new DeadStatus();
@@ -50,7 +47,7 @@ public class Level1State extends GameStateAbstract implements Level {
     }
 
     private void initPlayer() {
-        player = new Player(tileMap);
+        player = new Player(map);
         player.setCenter();
         player.setAlive();
     }
@@ -59,7 +56,7 @@ public class Level1State extends GameStateAbstract implements Level {
     public void update() {
         if (!win && !player.isDead()) {
             player.update();
-            tileMap.setPosition(
+            map.setPosition(
                     GamePanel.WIDTH / 2 - player.getX(),
                     GamePanel.HEIGHT / 2 - player.getY()
             );
@@ -71,7 +68,7 @@ public class Level1State extends GameStateAbstract implements Level {
     @Override
     public void draw(Graphics2D g) {
         bg.draw(g);
-        tileMap.draw(g);
+        map.draw(g);
         player.draw(g);
         if (win) {
             winStatus.draw(g);
@@ -148,7 +145,7 @@ public class Level1State extends GameStateAbstract implements Level {
 
     @Override
     public void checkIfFallen() {
-        if (player.getY() > GamePanel.HEIGHT - tileMap.getTileSize() / 2) {
+        if (player.getY() > GamePanel.HEIGHT - map.getTileSize() / 2) {
             player.died();
         }
     }

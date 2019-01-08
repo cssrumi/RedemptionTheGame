@@ -1,7 +1,7 @@
 package com.rtg.gameobject;
 
 import com.rtg.main.GamePanel;
-import com.rtg.tilemap.TileMap;
+import com.rtg.tilemap.Map;
 
 
 import java.awt.*;
@@ -12,7 +12,7 @@ public class Player extends GameObject {
     private PlayerStateManager psm;
 
 
-    public Player(TileMap tm) {
+    public Player(Map tm) {
         super(tm);
         init();
     }
@@ -26,8 +26,8 @@ public class Player extends GameObject {
         dead = false;
         width = tileSize;
         height = tileSize;
-        cwidth = 20;
-        cheight = 20;
+        cWidth = 20;
+        cHeight = 20;
         facingRight = true;
         setSpeed();
         try {
@@ -56,7 +56,7 @@ public class Player extends GameObject {
     public void update() {
         getNextPosition();
         checkTileMapCollision();
-        setPosition(xtemp, ytemp);
+        setPosition(xTemp, yTemp);
 
         if (dy > 0) {
             psm.setState(PlayerStateEnum.FALLING);

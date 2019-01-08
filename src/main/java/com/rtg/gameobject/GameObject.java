@@ -1,83 +1,45 @@
 package com.rtg.gameobject;
 
-import com.rtg.main.GamePanel;
 import com.rtg.tilemap.Tile;
-import com.rtg.tilemap.TileMap;
-
-import java.awt.*;
+import com.rtg.tilemap.Map;
 
 public abstract class GameObject {
 
-    protected TileMap tileMap;
+    protected Map map;
     protected int tileSize;
-    protected double xmap;
-    protected double ymap;
+    protected double xmap, ymap;
 
-    protected double x;
-    protected double y;
-    protected double dx;
-    protected double dy;
-    protected int width;
-    protected int height;
-    protected int cwidth;
-    protected int cheight;
-    protected int currRow;
-    protected int currCol;
-    protected double xdest;
-    protected double ydest;
-    protected double xtemp;
-    protected double ytemp;
-    protected boolean topLeft;
-    protected boolean topRight;
-    protected boolean bottomLeft;
-    protected boolean bottomRight;
+    protected double x, y;
+    protected double dx, dy;
+    protected double xDest, yDest;
+    protected double xTemp, yTemp;
+    protected int width, height;
+    protected int cWidth, cHeight;
+    protected int currRow, currCol;
+
+    protected boolean topLeft, topRight, bottomLeft, bottomRight;
     protected boolean facingRight;
-    protected boolean left;
-    protected boolean right;
-    protected boolean up;
-    protected boolean down;
-    protected boolean jumping;
-    protected boolean falling;
-    protected double moveSpeed;
-    protected double maxSpeed;
-    protected double stopSpeed;
-    protected double fallSpeed;
-    protected double maxFallSpeed;
+    protected boolean left, right, up, down, jumping, falling;
+    protected double moveSpeed, maxSpeed, stopSpeed, fallSpeed, maxFallSpeed, stopJumpSpeed;
     protected double jumpStart;
-    protected double stopJumpSpeed;
 
-    // constructor
-    public GameObject(TileMap tileMap) {
-        this.tileMap = tileMap;
-        tileSize = tileMap.getTileSize();
-    }
 
-    public boolean intersects(GameObject o) {
-        Rectangle r1 = getRectangle();
-        Rectangle r2 = o.getRectangle();
-        return r1.intersects(r2);
-    }
-
-    public Rectangle getRectangle() {
-        return new Rectangle(
-                (int) x - cwidth,
-                (int) y - cheight,
-                cwidth,
-                cheight
-        );
+    public GameObject(Map map) {
+        this.map = map;
+        tileSize = map.getTileSize();
     }
 
     public void calculateCorners(double x, double y) {
 
-        int leftTile = (int) (x - cwidth / 2) / tileSize;
-        int rightTile = (int) (x + cwidth / 2 - 1) / tileSize;
-        int topTile = (int) (y - cheight / 2) / tileSize;
-        int bottomTile = (int) (y + cheight / 2 - 1) / tileSize;
+        int leftTile = (int) (x - cWidth / 2) / tileSize;
+        int rightTile = (int) (x + cWidth / 2 - 1) / tileSize;
+        int topTile = (int) (y - cHeight / 2) / tileSize;
+        int bottomTile = (int) (y + cHeight / 2 - 1) / tileSize;
 
-        int tl = tileMap.getType(topTile, leftTile);
-        int tr = tileMap.getType(topTile, rightTile);
-        int bl = tileMap.getType(bottomTile, leftTile);
-        int br = tileMap.getType(bottomTile, rightTile);
+        int tl = map.getType(topTile, leftTile);
+        int tr = map.getType(topTile, rightTile);
+        int bl = map.getType(bottomTile, leftTile);
+        int br = map.getType(bottomTile, rightTile);
 
         topLeft = tl == Tile.BLOCKED;
         topRight = tr == Tile.BLOCKED;
@@ -91,51 +53,51 @@ public abstract class GameObject {
         currCol = (int) x / tileSize;
         currRow = (int) y / tileSize;
 
-        xdest = x + dx;
-        ydest = y + dy;
+        xDest = x + dx;
+        yDest = y + dy;
 
-        xtemp = x;
-        ytemp = y;
+        xTemp = x;
+        yTemp = y;
 
-        calculateCorners(x, ydest);
+        calculateCorners(x, yDest);
         if (dy < 0) {
             if (topLeft || topRight) {
                 dy = 0;
-                ytemp = currRow * tileSize + cheight / 2;
+                yTemp = currRow * tileSize + cHeight / 2;
             } else {
-                ytemp += dy;
+                yTemp += dy;
             }
         }
         if (dy > 0) {
             if (bottomLeft || bottomRight) {
                 dy = 0;
                 falling = false;
-                ytemp = (currRow + 1) * tileSize - cheight / 2;
+                yTemp = (currRow + 1) * tileSize - cHeight / 2;
             } else {
-                ytemp += dy;
+                yTemp += dy;
             }
         }
 
-        calculateCorners(xdest, y);
+        calculateCorners(xDest, y);
         if (dx < 0) {
             if (topLeft || bottomLeft) {
                 dx = 0;
-                xtemp = currCol * tileSize + cwidth / 2;
+                xTemp = currCol * tileSize + cWidth / 2;
             } else {
-                xtemp += dx;
+                xTemp += dx;
             }
         }
         if (dx > 0) {
             if (topRight || bottomRight) {
                 dx = 0;
-                xtemp = (currCol + 1) * tileSize - cwidth / 2;
+                xTemp = (currCol + 1) * tileSize - cWidth / 2;
             } else {
-                xtemp += dx;
+                xTemp += dx;
             }
         }
 
         if (!falling) {
-            calculateCorners(x, ydest + 1);
+            calculateCorners(x, yDest + 1);
             if (!bottomLeft && !bottomRight) {
                 falling = true;
             }
@@ -151,22 +113,6 @@ public abstract class GameObject {
         return (int) y;
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public int getCWidth() {
-        return cwidth;
-    }
-
-    public int getCHeight() {
-        return cheight;
-    }
-
     public void setPosition(double x, double y) {
         this.x = x;
         this.y = y;
@@ -178,8 +124,8 @@ public abstract class GameObject {
     }
 
     public void setMapPosition() {
-        xmap = tileMap.getX();
-        ymap = tileMap.getY();
+        xmap = map.getX();
+        ymap = map.getY();
     }
 
     public void setLeft(boolean b) {
@@ -202,10 +148,4 @@ public abstract class GameObject {
         jumping = b;
     }
 
-    public boolean notOnScreen() {
-        return x + xmap + width < 0 ||
-                x + xmap - width > GamePanel.WIDTH ||
-                y + ymap + height < 0 ||
-                y + ymap - height > GamePanel.HEIGHT;
-    }
 }

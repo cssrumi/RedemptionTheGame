@@ -26,8 +26,8 @@ public class MenuState extends GameStateAbstract {
 
         try {
 
-            bg = new Background("/background/menubg.gif", 1);
-            bg.setVector(-0.1, 0);
+            bg = new Background("/background/menubg.gif");
+            bg.setDelta(-0.1, 0);
 
             titleColor = new Color(128, 0, 0);
             titleFont = new Font("Century Gothic", Font.PLAIN, 28);
@@ -56,7 +56,7 @@ public class MenuState extends GameStateAbstract {
 
         g.setColor(titleColor);
         g.setFont(titleFont);
-        g.drawString("Redemption", 80, 70);
+        g.drawString("Drug effect", 80, 70);
 
         g.setFont(font);
         for (int i = 0; i < options.length; i++) {

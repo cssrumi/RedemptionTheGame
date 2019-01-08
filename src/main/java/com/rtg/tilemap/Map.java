@@ -9,36 +9,29 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class TileMap {
+public class Map {
 
-    private double x;
-    private double y;
+    private double x, y;
 
-    private int xmin;
-    private int ymin;
-    private int xmax;
-    private int ymax;
+    private int xmin, ymin;
+    private int xmax, ymax;
 
     private double tween;
 
     private int[][] map;
     private int tileSize;
-    private int numRows;
-    private int numCols;
-    private int width;
-    private int height;
+    private int numRows,numCols;
+    private int width, height;
 
     private BufferedImage tileset;
     private int numTilesAcross;
     private Tile[][] tiles;
     private int finishTileNumber;
 
-    private int rowOffset;
-    private int colOffset;
-    private int numRowsToDraw;
-    private int numColsToDraw;
+    private int rowOffset, colOffset;
+    private int numRowsToDraw, numColsToDraw;
 
-    public TileMap(int tileSize) {
+    public Map(int tileSize) {
         this.tileSize = tileSize;
         numRowsToDraw = GamePanel.HEIGHT / tileSize + 2;
         numColsToDraw = GamePanel.WIDTH / tileSize + 2;
